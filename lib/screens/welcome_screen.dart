@@ -30,7 +30,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
                 Text(
-                  'Flash Chat',
+                  'Walton App',
                   style: TextStyle(
                     fontSize: 50.0,
                     fontWeight: FontWeight.w900,
