@@ -15,7 +15,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final _auth = FirebaseAuth.instance;
   final _firestore =
-      FirebaseFirestore.instance; // Firestore.instance doesn't work
+      FirebaseFirestore.instance.collection('messages'); // Firestore.instance doesn't work
   /// in trouble
   late User loggedInUser;
   String messageText = '';
@@ -56,7 +56,10 @@ class _ChatScreenState extends State<ChatScreen> {
                 //Implement logout functionality
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: Text('⚡️Chat',
+        style: TextStyle(
+          fontSize: 20,
+        ),),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
@@ -80,8 +83,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   TextButton(
                     onPressed: () {
                       //we have messageText + loggedInUser.email
-                      _firestore.collection('messages').add(
+                      print('Send button pressed');
+                      _firestore.add(
                           {'text': messageText, 'sender': loggedInUser.email});
+                      print('${loggedInUser.email} is logged in');
                     },
                     child: Text(
                       'Send',
